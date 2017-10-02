@@ -1,0 +1,2 @@
+# grprog-NTNU
+Grunnleggende programmering
