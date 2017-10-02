@@ -1,0 +1,30 @@
+// oblig 3. Sam Roen. BITSEC
+// programmet leser inn tre stk. brøker, og utfører regneoperajoner.
+
+#include <iostream>
+using namespace std;
+
+struct Broek
+    {
+	int teller;
+	int nevner;
+    };
+
+int main()
+{
+	float t;                                 // teller verdi
+	float n;                                 // nevner verdi
+	
+	cout << "Tast inn teller og nevener: \t" << endl;
+	cin >> t >> n;
+
+	Broek broek1;
+
+	broek1.teller = t; 
+	broek1.nevner = n;
+	
+	cout << "Broek nr.1: \t" << (t/n) << endl;
+
+
+	return 0;
+}
