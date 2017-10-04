@@ -1,32 +1,30 @@
-// oblig 3. Sam Roen. BITSEC
+// oblig 3. (Sam Roen - student# 485519). BITSEC
 // programmet leser inn tre stk. brøker, og utfører regneoperajoner.
 
 #include <iostream>
 #include <cctype> 
 using namespace std;
 
-char ch;                                  // velge brøk nr
+char ch;                                  // velge brøk
 char opr;                                 // velge operasjon (+,-,*,/)
 
-struct Brok {
+struct Brok {                             // strukt deklarasjon
 	int t;                                // variabel teller
 	int n;                                // variabel nevner  
     };
 
-int main() {
-	Brok brok1;
-	Brok brok2;
-	Brok brok3;
-	Brok temp, temp1, temp2;
+int main() { 
+	Brok brok1, brok2, brok3,            // definre brøker
+		 temp, temp1, temp2;             // definere temporary variabel 
 
-	for (int j = 1; j <= 3; j++) {
+	for (int j = 1; j <= 3; j++) {              // looper til å lese inn 3 broker
 		cout << "Brok nr." << j << "\n"
-			 << "\tTeller: "; cin >> temp.t;
+			 << "\tTeller: "; cin >> temp.t;         // lese inn teller
 			do {
-			cout << "\tNevner: "; cin >> temp.n;
+			cout << "\tNevner: "; cin >> temp.n;     // lese in nevner
 			 			
-		} while (temp.n <= 0);
-		if (j == 1)	{
+		} while (temp.n <= 0);             // looper hvis never er minus eller 0
+		if (j == 1)	{                      // kopierer temp til brøkene
 			brok1 = temp;
 		}
 		else if (j == 2) {
@@ -37,53 +35,55 @@ int main() {
 		}
 	}
 		
-	do {
-		cout << "\n A: nr.1 og nr.2\n B: nr.1 og nr.3\n C: nr.2 og nr.3\n Q: slutt" << endl;
-		cin >> ch;
+	do {                                   // looper hvis valg er tastet feil
+		cout << "\n A: nr.1 og nr.2\n B: nr.1 og nr.3\n C: nr.2 og nr.3\n Q: slutt"
+			 << endl;
+		cin >> ch;                         // lese inn valg
 		ch = toupper(ch);
 	} while (ch != 'A' && ch != 'B' && ch != 'C' && ch != 'Q');
 
-	while (ch != 'Q') {
-		switch (ch)	{
+	while (ch != 'Q') {                     
+		                                   // switch for valgene A, B og C
+		switch (ch)	{                      // kopierer brøkene til temp1,2
 			case 'A': temp1 = brok1; temp2 = brok2; break;
 			case 'B': temp1 = brok1; temp2 = brok3;	break;
 			case 'C': temp1 = brok2; temp2 = brok3; break;
 			}
-			
+			                               // looper oprasjonene  
 			do {
-				cout << "Onsket operasjon (+,-,*,/) \n" << endl;
+				cout << "Onsket operasjon (+,-,*,/)   ";
 				cin >> opr;
-			} while (opr != '+' && ch != '-' && ch != '*' && ch != '/');
-			
+			} while (opr != '+' && opr != '-' && opr != '*' && opr != '/');
+			                               // switch for operasjonene
 			switch (opr) {
-			case '+':
+			case '+':                      // regneoprasjon addisjon
 				temp.t = (temp1.t*temp2.n) + (temp1.n*temp2.t);
 				temp.n = temp1.n*temp2.n;
 				break;
-			case '-':
+			case '-':                      // regneoprasjon subtraksjon
 				temp.t = (temp1.t*temp2.n) - (temp1.n*temp2.t);
 				temp.n = temp1.n*temp2.n;
 				break;
-			case '*':
+			case '*':                      // regneoprasjon multiplikasjon
 				temp.t = temp1.t*temp2.t;
 				temp.n = temp1.n*temp2.n;
 				break;
-			case '/':
+			case '/':                      // regneoprasjon divisjon
 				temp.t = temp1.t*temp2.n;
-				temp.n = temp1.n*temp2.t;
+				temp.n = temp1.n*temp2.n;
 				break;
 			}
-
+			                                      // output for ønsket regneoprasjon
 	cout << "Svaret er: " << temp1.t << '/' << temp1.n << ' ' << opr << ' ' << temp2.t 
 		 << '/' << temp2.n << " = " << temp.t << '/' << temp.n << "\n\n";
 
-	do {
+	do {                                   // gjenter valgene 
 		cout << " A: nr.1 og nr.2\n B: nr.1 og nr.3\n C: nr.2 og nr.3\n Q: slutt" << endl;
 		cin >> ch;
 		ch = toupper(ch);
 		} while (ch != 'A' && ch != 'B' && ch != 'C' && ch != 'Q');
 	}
 	
-	cout << "Det var alt vi hadde!\n";
+	cout << "Ferdig!\n";
 	return 0;
 }
