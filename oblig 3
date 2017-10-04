@@ -5,27 +5,25 @@
 #include <cctype> 
 using namespace std;
 
-char ch;                                     // velge brøk nr
-char opr;                                    // velge operasjon (+,-,*,/)
+char ch;                                  // velge brøk nr
+char opr;                                 // velge operasjon (+,-,*,/)
 
-struct Brok
-    {
+struct Brok {
 	int t;                                // variabel teller
 	int n;                                // variabel nevner  
     };
 
-int main()
-{
+int main() {
 	Brok brok1;
 	Brok brok2;
 	Brok brok3;
 	Brok temp, temp1, temp2;
 
 	for (int j = 1; j <= 3; j++) {
-		do {
-			cout << "Brok nr." << j << "\n"
-				 << "Teller: "; cin >> temp.t;
-			cout << "Nevner: \n"; cin >> temp.n;
+		cout << "Brok nr." << j << "\n"
+			 << "\tTeller: "; cin >> temp.t;
+			do {
+			cout << "\tNevner: "; cin >> temp.n;
 			 			
 		} while (temp.n <= 0);
 		if (j == 1)	{
@@ -40,21 +38,24 @@ int main()
 	}
 		
 	do {
-		cout << " A: nr.1 og nr.2\n B: nr.1 og nr.3\n C: nr.2 og nr.3\n Q: slutt" << endl;
+		cout << "\n A: nr.1 og nr.2\n B: nr.1 og nr.3\n C: nr.2 og nr.3\n Q: slutt" << endl;
 		cin >> ch;
 		ch = toupper(ch);
 	} while (ch != 'A' && ch != 'B' && ch != 'C' && ch != 'Q');
 
-			switch (ch)
-			{
+	while (ch != 'Q') {
+		switch (ch)	{
 			case 'A': temp1 = brok1; temp2 = brok2; break;
 			case 'B': temp1 = brok1; temp2 = brok3;	break;
 			case 'C': temp1 = brok2; temp2 = brok3; break;
 			}
-			cout << "Onsket operasjon (+,-,*,/) \n" << endl;
-			cin >> opr;
-			switch (opr)
-			{
+			
+			do {
+				cout << "Onsket operasjon (+,-,*,/) \n" << endl;
+				cin >> opr;
+			} while (opr != '+' && ch != '-' && ch != '*' && ch != '/');
+			
+			switch (opr) {
 			case '+':
 				temp.t = (temp1.t*temp2.n) + (temp1.n*temp2.t);
 				temp.n = temp1.n*temp2.n;
@@ -73,9 +74,16 @@ int main()
 				break;
 			}
 
-		cout << temp1.t << '/' << temp1.n << ' ' << opr << ' ' << temp2.t 
-			 << '/' << temp2.n << " = " << temp.t << '/' << temp.n << '\n';
+	cout << "Svaret er: " << temp1.t << '/' << temp1.n << ' ' << opr << ' ' << temp2.t 
+		 << '/' << temp2.n << " = " << temp.t << '/' << temp.n << "\n\n";
 
-
+	do {
+		cout << " A: nr.1 og nr.2\n B: nr.1 og nr.3\n C: nr.2 og nr.3\n Q: slutt" << endl;
+		cin >> ch;
+		ch = toupper(ch);
+		} while (ch != 'A' && ch != 'B' && ch != 'C' && ch != 'Q');
+	}
+	
+	cout << "Det var alt vi hadde!\n";
 	return 0;
 }
