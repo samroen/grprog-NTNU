@@ -1,0 +1,59 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+const int STRLEN = 45;
+const int MAXPERSON = 5;
+					// klasse
+class Person {
+private:
+	char navn[STRLEN];
+public:
+	void lesData() {
+		cout << "\tNavn: \t";
+		cin.getline(navn, STRLEN);
+	}
+};
+					// Array av objekter
+Person Liste[MAXPERSON];
+int sistebrukt = 0;
+					// declare functions
+void skrivMeny();
+char lesKommando();
+void nyPerson();
+
+					// main program
+int main() {
+	char kommando;
+	skrivMeny();
+	kommando=lesKommando();
+	while (kommando != 'Q') {
+		switch (kommando) {
+		case 'N': nyPerson(); break;  // registrer ny person.
+		default: skrivMeny();
+		}
+	}
+	return 0;
+}
+								//definisjon av funksjoner
+void skrivMeny() {
+	cout << "\tTilgjengelige kommando:\n";
+	cout << "\tN = Ny person\n";
+}
+char lesKommando() {
+	char ch;
+	cout << "Oppgi onske:\t";
+	cin >> ch;
+	return toupper(ch);
+}
+void nyPerson() {
+	if (sistebrukt < MAXPERSON) {
+		++sistebrukt;
+		cout << "Personnel# "<<sistebrukt<<": \n";
+		Liste[sistebrukt].lesData();
+		cout << "\nNy person registrert...\n";
+	}
+	else
+		cout << "Ikke mere plass.\n";
+}
